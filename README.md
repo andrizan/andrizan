@@ -7,7 +7,7 @@
 
 - 📝 I regulary write articles on [andrizan.my.id](https://andrizan.my.id)
 
-- 💬 Ask me about **PHP and JavaScript**
+- 💬 Ask me about **PHP** and **JavaScript**
 
 - 📫 How to reach me **riski.andriyanto0111@gmail.com**
 
