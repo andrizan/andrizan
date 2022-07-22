@@ -3,10 +3,6 @@
 
 <p align="left">
  <img src="https://komarev.com/ghpvc/?username=andrizan&style=flat-square&color=brightgreen&style=flat-square"/>
- <img src="https://badges.pufler.dev/years/andrizan"/>
- <img src="https://badges.pufler.dev/repos/andrizan"/>
- <img src="https://badges.pufler.dev/gists/andrizan"/>
- <img src="https://badges.pufler.dev/commits/yearly/andrizan"/>
 </p>
 
 
