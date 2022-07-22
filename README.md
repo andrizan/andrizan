@@ -10,7 +10,7 @@
 
 - 💬 Ask me about **PHP** and **JavaScript**
 
-- 📫 How to reach me **riski.andriyanto0111@gmail.com**
+- 📫 How to reach me **me@andrizan.my.id**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
