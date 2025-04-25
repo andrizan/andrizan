@@ -2,7 +2,7 @@
  <img src="https://komarev.com/ghpvc/?username=andrizan&style=flat-square&color=brightgreen&style=flat-square"/>
 </p>
 
-- **me@andrizan.xyz**
+- **me@andrizan.com**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
