@@ -3,14 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <title>Riski Andriyanto – Portfolio</title>
+  <meta name="description" content="Riski Andriyanto's Portfolio" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=7">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    body{
+        font-family: "Roboto Mono", monospace;
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+  </style>
 </head>
 <body>
-  <pre>
-Riski Andriyanto
-Programmer | Backend & Fullstack Developer
-Email: me@andrizan.com | GitHub: github.com/andrizan | LinkedIn: linkedin.com/in/andrizan/
+  <div id="content"></div>
+  <script>
+    const md = `
+# Riski Andriyanto
+Programmer | Backend & Fullstack Developer <br/>
+Email: <a href="mailto:me@andrizan.com">me@andrizan.com</a> | GitHub: [github.com/andrizan](https://github.com/andrizan) | LinkedIn: [linkedin.com/in/andrizan/](https://linkedin.com/in/andrizan/)
 
-CORE COMPETENCIES
+---
+## CORE COMPETENCIES
 - Programming Languages: PHP (Laravel), Go, SQL, JavaScript/Typescript (Node.js/Bun.js)
 - Frontend: React, Vue.js, svelte, SolidJS, HTML, CSS (Tailwind, Bootstrap)
 - Backend: RESTful API, Hono.js, Laravel, Chi, SQLx, Express.js, WebSocket
@@ -19,8 +37,9 @@ CORE COMPETENCIES
 - Tools: Git, Docker, Podman, Postman, K8s, CI/CD (GitLab CI)
 - Cloud & Deployment: VPS, Google Cloud, Nginx, PM2
 
-WORK EXPERIENCE
-Senior Engineer – PT Belanja Pasti Indonesia
+---
+## WORK EXPERIENCE
+### Senior Engineer – PT Belanja Pasti Indonesia
 June 2019 – Present
 
 - Developed and maintained internal ERP systems.
@@ -29,13 +48,13 @@ June 2019 – Present
 - Designed applications for both internal operations and consumer use.
 - Maintained company servers.
 
-Fullstack Developer – CV. Ezatech
+### Fullstack Developer – CV Ezatech
 June 2018 – June 2019
 
 - Handled projects entrusted by clients to the company.
-
-  </pre>
+`;
+    document.getElementById('content').innerHTML = marked.parse(md);
+  </script>
 </body>
 </html>
-
 
