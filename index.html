@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>  
+<head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RP0DTBNLCT"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
     gtag('config', 'G-RP0DTBNLCT');
   </script>
 
@@ -15,43 +14,152 @@
   <title>Riski Andriyanto – Portfolio</title>
   <meta name="description" content="Riski Andriyanto's Portfolio" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=7">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+  <!-- Open Graph Meta -->
+  <meta property="og:title" content="Riski Andriyanto – Portfolio" />
+  <meta property="og:description" content="Programmer | Backend & Fullstack Developer" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://andrizan.com" />
+  <meta property="og:image" content="https://i.postimg.cc/SNjj0TZf/txt.png" />
+
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <style>
-    body{
-        font-family: "Roboto Mono", monospace;
-        font-optical-sizing: auto;
-        font-style: normal;
+    body {
+      display: flex;
+      flex-wrap: wrap;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* TOC */
+    #toc {
+      width: 250px;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 20px;
+      border-right: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      background: #fafafa;
+    }
+
+    #toc h3 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+
+    #toc ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    #toc li {
+      margin: 4px 0;
+    }
+
+    #toc a {
+      text-decoration: none;
+      color: #0366d6;
+      font-size: 14px;
+    }
+
+    #toc a:hover {
+      text-decoration: underline;
+    }
+
+    /* Content */
+    #content {
+      flex: 1;
+      max-width: 800px;
+      margin: auto;
+      padding: 40px;
+    }
+
+    /* Mobile style */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      #toc {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        background: #f9f9f9;
+      }
+      #toc button {
+        display: block;
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-size: 16px;
+        padding: 10px;
+        cursor: pointer;
+      }
+      #toc.collapsed ul {
+        display: none;
+      }
+    }
+
+    @media (min-width: 769px) {
+      #toc button {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
+   <nav id="toc" class="collapsed">
+    <button onclick="toggleToc()" aria-expanded="false">☰ Table of Contents</button>
+    <ul></ul>
+  </nav>
   <div id="content"></div>
+
   <script>
     const md = `
 # Riski Andriyanto
 Programmer | Backend & Fullstack Developer <br/>
-Email: <a href="mailto:me@andrizan.com">me@andrizan.com</a> | GitHub: [github.com/andrizan](https://github.com/andrizan) | LinkedIn: [linkedin.com/in/andrizan/](https://linkedin.com/in/andrizan/)
+Email: <a href="mailto:me@andrizan.com">me@andrizan.com</a> | GitHub: [github.com/andrizan](https://github.com/andrizan) | LinkedIn: [linkedin.com/in/andrizan](https://linkedin.com/in/andrizan)
 
 ---
+
 ## CORE COMPETENCIES
-- Programming Languages: PHP (Laravel), Go, SQL, JavaScript/Typescript (Node.js/Bun.js)
-- Frontend: React, Vue.js, svelte, SolidJS, HTML, CSS (Tailwind, Bootstrap)
-- Backend: RESTful API, Hono.js, Laravel, Chi, SQLx, Express.js, WebSocket
-- Android: React Native, Flutter
-- Database: MySQL, PostgreSQL, MongoDB, MSSQL, ClickHouse, Redis/Valkey
-- Tools: Git, Docker, Podman, Postman, K8s, CI/CD (GitLab CI)
-- Cloud & Deployment: VPS, Google Cloud, Nginx, PM2
+
+### Languages
+- PHP (Laravel), Go, SQL
+- JavaScript / TypeScript (Node.js, Bun.js)
+
+### Frontend Frameworks
+- React, Vue.js, Svelte, SolidJS
+- HTML, CSS (Tailwind, Bootstrap)
+
+### Backend Frameworks
+- RESTful API, Hono.js, Laravel, Chi, SQLx, Express.js, WebSocket
+
+### Mobile
+- React Native, Flutter
+
+### Databases & Storage
+- MySQL, PostgreSQL, MongoDB, MSSQL, ClickHouse
+- Redis / Valkey
+
+### DevOps & Tools
+- Git, Docker, Podman
+- Postman, CI/CD (GitLab CI), Kubernetes
+
+### Cloud & Deployment
+- VPS, Google Cloud
+- Nginx, PM2
 
 ---
-## WORK EXPERIENCE
-### Senior Engineer – PT Belanja Pasti Indonesia
-June 2019 – Present
 
+## WORK EXPERIENCE
+
+### Senior Engineer – PT Belanja Pasti Indonesia
+*June 2019 – Present*
 - Developed and maintained internal ERP systems.
 - Implemented CI/CD pipelines for automated deployments.
 - Conducted R&D to resolve application issues.
@@ -59,13 +167,40 @@ June 2019 – Present
 - Maintained company servers.
 
 ### Fullstack Developer – CV Ezatech
-June 2018 – June 2019
-
+*June 2018 – June 2019*
 - Handled projects entrusted by clients to the company.
 `;
+
+    // Render markdown
     document.getElementById('content').innerHTML = marked.parse(md);
+
+    // Build TOC
+    function buildToc() {
+      const headings = document.querySelectorAll('#content h1, #content h2, #content h3');
+      const tocUl = document.querySelector('#toc ul');
+      tocUl.innerHTML = "";
+
+      headings.forEach(h => {
+        const id = h.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        h.id = id;
+        const li = document.createElement('li');
+        li.style.marginLeft = (parseInt(h.tagName[1]) - 1) * 10 + 'px';
+        const a = document.createElement('a');
+        a.href = '#' + id;
+        a.textContent = h.textContent;
+        li.appendChild(a);
+        tocUl.appendChild(li);
+      });
+    }
+    buildToc();
+
+    // Toggle for mobile
+    function toggleToc() {
+      const toc = document.getElementById('toc');
+      toc.classList.toggle('collapsed');
+      const btn = toc.querySelector('button');
+      btn.setAttribute('aria-expanded', toc.classList.contains('collapsed') ? 'false' : 'true');
+    }
   </script>
 </body>
 </html>
-
-
