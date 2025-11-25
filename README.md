@@ -30,11 +30,11 @@ Email: <a href="mailto:me@andrizan.com">me@andrizan.com</a> | GitHub: [github.co
 
 ### DevOps & Tools
 - Git, Docker, Podman
-- Postman, CI/CD (GitLab CI), Kubernetes
+- Postman, Yaak, CI/CD (GitLab CI), Kubernetes
 
 ### Cloud & Deployment
-- VPS, Google Cloud
-- Nginx, PM2
+- VPS, Google Cloud, Digitalocean, xcp-ng, Proxmox, Cloudflare
+- Nginx, systemd, PM2
 
 ---
 
