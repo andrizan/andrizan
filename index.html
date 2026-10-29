@@ -14,6 +14,7 @@
   <title>Riski Andriyanto – Portfolio</title>
   <meta name="description" content="Riski Andriyanto's Portfolio" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
 
   <!-- Open Graph Meta -->
   <meta property="og:title" content="Riski Andriyanto – Portfolio" />
@@ -22,101 +23,246 @@
   <meta property="og:url" content="https://andrizan.com" />
   <!-- <meta property="og:image" content="https://i.postimg.cc/SNjj0TZf/txt.png" /> -->
 
-  <script src="https://cdn.jsdelivr.net/npm/marked@17.0.1/lib/marked.umd.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/marked@18.1.2/lib/marked.umd.min.js"></script>
 
   <style>
-    body {
-      display: flex;
-      flex-wrap: wrap;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.5;
-      margin: 0;
+    /* Palette: every text/background pair is >= 4.5:1, control borders >= 3:1 (WCAG 2.2 AA) */
+    :root {
+      color-scheme: light dark;
+      --bg: light-dark(#fbfaf8, #1b1e24);
+      --surface: light-dark(#f2f0ec, #23272e);
+      --text: light-dark(#33383d, #d3d8de);
+      --muted: light-dark(#646b72, #9aa2ac);
+      --accent: light-dark(#40599a, #8cabe0);
+      --border: light-dark(#e1ded8, #343a43);
+      --control-border: light-dark(#7f848b, #717985);
+      --focus: light-dark(#40599a, #a9c2ec);
     }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+
+    body {
+      display: grid;
+      grid-template-columns: 16rem minmax(0, 1fr);
+      min-height: 100dvh;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      z-index: 10;
+      padding: 0.625rem 1rem;
+      border-radius: 0.375rem;
+      background: var(--text);
+      color: var(--bg);
+      font-weight: 600;
+      transform: translateY(-200%);
+    }
+
+    .skip-link:focus { transform: none; }
 
     /* TOC */
-    #toc {
-      width: 250px;
-      max-height: 100vh;
-      overflow-y: auto;
-      padding: 20px;
-      border-right: 1px solid #ddd;
+    .toc {
       position: sticky;
       top: 0;
-      background: #fafafa;
+      align-self: start;
+      height: 100dvh;
+      overflow-y: auto;
+      padding: 2rem 1.25rem;
+      border-right: 1px solid var(--border);
+      background: var(--surface);
     }
 
-    #toc h3 {
-      margin-top: 0;
-      font-size: 16px;
+    .toc-title {
+      margin: 0 0 0.75rem;
+      color: var(--muted);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    #toc ul {
-      list-style: none;
-      padding-left: 0;
+    .toc-toggle { display: none; }
+
+    .toc ul {
       margin: 0;
+      padding: 0;
+      list-style: none;
     }
 
-    #toc li {
-      margin: 4px 0;
-    }
-
-    #toc a {
+    .toc a {
+      display: block;
+      padding: 0.375rem 0.75rem;
+      border-left: 3px solid transparent;
+      border-radius: 0 0.375rem 0.375rem 0;
+      color: var(--muted);
+      font-size: 0.9375rem;
+      line-height: 1.4;
       text-decoration: none;
-      color: #0366d6;
-      font-size: 14px;
     }
 
-    #toc a:hover {
+    .toc a:hover {
+      border-left-color: var(--accent);
+      color: var(--text);
       text-decoration: underline;
     }
 
+    .toc li[data-level="3"] a { padding-left: 1.5rem; }
+
     /* Content */
-    #content {
-      flex: 1;
-      max-width: 800px;
-      margin: auto;
-      padding: 40px;
+    main {
+      padding: clamp(1.5rem, 5vw, 4rem) clamp(1rem, 5vw, 3rem);
     }
+
+    main:focus { outline: none; }
+
+    #content {
+      max-width: 60rem;
+      margin-inline: auto;
+      overflow-wrap: anywhere;
+    }
+
+    #content a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.2em;
+    }
+
+    #content a:hover { text-decoration-thickness: 0.16em; }
+
+    #content img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    #content hr { display: none; }
+
+    #content h1 {
+      margin: 0.5rem 0;
+      font-size: clamp(2rem, 1.4rem + 2.5vw, 3rem);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    #content header { padding-bottom: 0.5rem; }
+
+    #content header p {
+      max-width: 65ch;
+      margin: 0.5rem 0;
+      font-size: 1.125rem;
+    }
+
+    #content h2 {
+      margin: 3rem 0 1rem;
+      color: var(--accent);
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      background: var(--surface);
+    }
+
+    .card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.0625rem;
+      line-height: 1.35;
+    }
+
+    .card p { margin: 0 0 0.5rem; color: var(--muted); }
+
+    .card ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .card li + li { margin-top: 0.25rem; }
 
     /* Mobile style */
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
+    @media (max-width: 48rem) {
+      body { grid-template-columns: minmax(0, 1fr); }
+
+      .toc {
+        position: static;
+        height: auto;
+        padding: 0.75rem 1rem;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
       }
-      #toc {
+
+      .toc-title { display: none; }
+
+      .toc-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
         width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #ddd;
-        background: #f9f9f9;
-      }
-      #toc button {
-        display: block;
-        background: none;
-        border: none;
-        width: 100%;
+        min-height: 2.75rem;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--control-border);
+        border-radius: 0.5rem;
+        background: var(--bg);
+        color: var(--text);
+        font: inherit;
+        font-weight: 600;
         text-align: left;
-        font-size: 16px;
-        padding: 10px;
         cursor: pointer;
       }
-      #toc.collapsed ul {
-        display: none;
-      }
+
+      .toc.collapsed ul { display: none; }
+
+      .toc ul { margin-top: 0.5rem; }
     }
 
-    @media (min-width: 769px) {
-      #toc button {
-        display: none;
-      }
+    @media print {
+      .toc, .skip-link { display: none; }
+      body { display: block; }
+      main { padding: 0; }
+      .card { break-inside: avoid; }
     }
   </style>
 </head>
 <body>
-  <nav id="toc" class="collapsed">
-    <button onclick="toggleToc()" aria-expanded="false">☰ Table of Contents</button>
-    <ul></ul>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <nav id="toc" class="toc collapsed" aria-label="Table of contents">
+    <button type="button" class="toc-toggle" aria-expanded="false" aria-controls="toc-list">
+      <span aria-hidden="true">☰</span> Table of Contents
+    </button>
+    <p class="toc-title" aria-hidden="true">Table of Contents</p>
+    <ul id="toc-list"></ul>
   </nav>
-  <div id="content"></div>
+
+  <main id="main" tabindex="-1">
+    <div id="content" aria-busy="true">
+      <noscript><p>This page renders my README with JavaScript. <a href="https://github.com/andrizan">View it on GitHub</a> instead.</p></noscript>
+    </div>
+  </main>
 
   <script>
     async function loadMarkdown() {
@@ -126,25 +272,66 @@
         if (!res.ok) throw new Error('Failed to load README (' + res.status + ')');
         const mdText = await res.text();
         contentEl.innerHTML = marked.parse(mdText);
+        assignIds();
+        structure(contentEl);
         buildToc();
       } catch (err) {
-        contentEl.innerHTML = '<p>Unable to load README content.</p>';
+        contentEl.innerHTML = '<p role="alert">Unable to load README content. <a href="https://github.com/andrizan">View it on GitHub</a> instead.</p>';
         console.error(err);
+      } finally {
+        contentEl.removeAttribute('aria-busy');
       }
     }
 
+    function assignIds() {
+      document.querySelectorAll('#content h1, #content h2, #content h3').forEach(h => {
+        h.id = h.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+      });
+    }
+
+    // Wrap rendered markdown: intro -> <header>, each h2 -> <section>, each h3 -> card
+    function structure(root) {
+      const header = document.createElement('header');
+      const frag = document.createDocumentFragment();
+      frag.append(header);
+      let section = null, cards = null, card = null;
+
+      for (const el of [...root.children]) {
+        if (el.tagName === 'H2') {
+          section = document.createElement('section');
+          section.setAttribute('aria-labelledby', el.id);
+          section.append(el);
+          frag.append(section);
+          cards = card = null;
+        } else if (!section) {
+          header.append(el);
+        } else if (el.tagName === 'H3') {
+          if (!cards) {
+            cards = document.createElement('div');
+            cards.className = 'cards';
+            section.append(cards);
+          }
+          card = document.createElement('div');
+          card.className = 'card';
+          card.append(el);
+          cards.append(card);
+        } else {
+          (card || section).append(el);
+        }
+      }
+      root.replaceChildren(frag);
+    }
+
     function buildToc() {
-      const headings = document.querySelectorAll('#content h1, #content h2, #content h3');
+      const headings = document.querySelectorAll('#content h2, #content h3');
       const tocUl = document.querySelector('#toc ul');
       tocUl.innerHTML = "";
 
       headings.forEach(h => {
-        const id = h.textContent.trim().toLowerCase().replace(/\s+/g, '-');
-        h.id = id;
         const li = document.createElement('li');
-        li.style.marginLeft = (parseInt(h.tagName[1]) - 1) * 10 + 'px';
+        li.dataset.level = h.tagName[1];
         const a = document.createElement('a');
-        a.href = '#' + id;
+        a.href = '#' + h.id;
         a.textContent = h.textContent;
         li.appendChild(a);
         tocUl.appendChild(li);
@@ -152,18 +339,21 @@
     }
 
     // Toggle for mobile
-    function toggleToc() {
+    function setTocCollapsed(collapsed) {
       const toc = document.getElementById('toc');
-      toc.classList.toggle('collapsed');
-      const btn = toc.querySelector('button');
-      btn.setAttribute('aria-expanded', toc.classList.contains('collapsed') ? 'false' : 'true');
+      toc.classList.toggle('collapsed', collapsed);
+      toc.querySelector('button').setAttribute('aria-expanded', String(!collapsed));
     }
 
-    loadMarkdown();
+    const tocEl = document.getElementById('toc');
+    tocEl.querySelector('button').addEventListener('click', () => {
+      setTocCollapsed(!tocEl.classList.contains('collapsed'));
+    });
+    tocEl.querySelector('ul').addEventListener('click', e => {
+      if (e.target.closest('a')) setTocCollapsed(true);
+    });
+
+    window.addEventListener('DOMContentLoaded', loadMarkdown);
   </script>
 </body>
 </html>
-
-
-
-

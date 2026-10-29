@@ -1,5 +1,5 @@
 <p align="left">
- <img src="https://komarev.com/ghpvc/?username=andrizan&style=flat-square&color=brightgreen&style=flat-square"/>
+ <img alt="Profile views" src="https://komarev.com/ghpvc/?username=andrizan&style=flat-square&color=brightgreen&style=flat-square"/>
 </p>
 
 # Riski Andriyanto
