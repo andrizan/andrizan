@@ -52,8 +52,9 @@
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.65;
+      font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9375rem;
+      line-height: 1.7;
     }
 
     :focus-visible {
@@ -111,7 +112,7 @@
       border-left: 3px solid transparent;
       border-radius: 0 0.375rem 0.375rem 0;
       color: var(--muted);
-      font-size: 0.9375rem;
+      font-size: 0.8125rem;
       line-height: 1.4;
       text-decoration: none;
     }
@@ -132,7 +133,7 @@
     main:focus { outline: none; }
 
     #content {
-      max-width: 60rem;
+      max-width: 72ch;
       margin-inline: auto;
       overflow-wrap: anywhere;
     }
@@ -155,53 +156,45 @@
 
     #content h1 {
       margin: 0.5rem 0;
-      font-size: clamp(2rem, 1.4rem + 2.5vw, 3rem);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
+      font-size: clamp(1.625rem, 1.2rem + 2vw, 2.25rem);
+      line-height: 1.2;
     }
 
     #content header { padding-bottom: 0.5rem; }
 
-    #content header p {
-      max-width: 65ch;
-      margin: 0.5rem 0;
-      font-size: 1.125rem;
-    }
+    #content header p { margin: 0.5rem 0; }
 
     #content h2 {
       margin: 3rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
       color: var(--accent);
-      font-size: 1.25rem;
-      letter-spacing: 0.06em;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
-      gap: 1rem;
+    #content h3 {
+      margin: 1.75rem 0 0.25rem;
+      font-size: 1rem;
+      line-height: 1.4;
     }
 
-    .card {
-      padding: 1.25rem;
-      border: 1px solid var(--border);
-      border-radius: 0.75rem;
-      background: var(--surface);
-    }
-
-    .card h3 {
+    #content section p {
       margin: 0 0 0.5rem;
-      font-size: 1.0625rem;
-      line-height: 1.35;
+      color: var(--muted);
     }
 
-    .card p { margin: 0 0 0.5rem; color: var(--muted); }
-
-    .card ul {
-      margin: 0;
-      padding-left: 1.25rem;
+    #content ul {
+      margin: 0.25rem 0 0;
+      padding-left: 2ch;
     }
 
-    .card li + li { margin-top: 0.25rem; }
+    #content li::marker {
+      content: "- ";
+      color: var(--muted);
+    }
+
+    #content li + li { margin-top: 0.25rem; }
 
     /* Mobile style */
     @media (max-width: 48rem) {
@@ -243,7 +236,7 @@
       .toc, .skip-link { display: none; }
       body { display: block; }
       main { padding: 0; }
-      .card { break-inside: avoid; }
+      h2, h3 { break-after: avoid; }
     }
   </style>
 </head>
@@ -289,35 +282,20 @@
       });
     }
 
-    // Wrap rendered markdown: intro -> <header>, each h2 -> <section>, each h3 -> card
+    // Wrap rendered markdown: intro -> <header>, each h2 -> <section>
     function structure(root) {
       const header = document.createElement('header');
       const frag = document.createDocumentFragment();
       frag.append(header);
-      let section = null, cards = null, card = null;
+      let section = null;
 
       for (const el of [...root.children]) {
         if (el.tagName === 'H2') {
           section = document.createElement('section');
           section.setAttribute('aria-labelledby', el.id);
-          section.append(el);
           frag.append(section);
-          cards = card = null;
-        } else if (!section) {
-          header.append(el);
-        } else if (el.tagName === 'H3') {
-          if (!cards) {
-            cards = document.createElement('div');
-            cards.className = 'cards';
-            section.append(cards);
-          }
-          card = document.createElement('div');
-          card.className = 'card';
-          card.append(el);
-          cards.append(card);
-        } else {
-          (card || section).append(el);
         }
+        (section || header).append(el);
       }
       root.replaceChildren(frag);
     }
