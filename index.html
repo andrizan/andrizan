@@ -43,6 +43,7 @@
 
     @media (prefers-reduced-motion: no-preference) {
       html { scroll-behavior: smooth; }
+      .toc a { transition: color 0.15s, border-color 0.15s, background-color 0.15s; }
     }
 
     body {
@@ -123,6 +124,13 @@
       text-decoration: underline;
     }
 
+    .toc a[aria-current="location"] {
+      border-left-color: var(--accent);
+      background: var(--bg);
+      color: var(--text);
+      font-weight: 700;
+    }
+
     .toc li[data-level="3"] a { padding-left: 1.5rem; }
 
     /* Content */
@@ -198,11 +206,15 @@
 
     /* Mobile style */
     @media (max-width: 48rem) {
-      body { grid-template-columns: minmax(0, 1fr); }
+      html { scroll-padding-top: 5rem; }
+
+      body { display: block; }
 
       .toc {
-        position: static;
+        position: sticky;
+        z-index: 5;
         height: auto;
+        max-height: 100dvh;
         padding: 0.75rem 1rem;
         border-right: 0;
         border-bottom: 1px solid var(--border);
@@ -268,6 +280,7 @@
         assignIds();
         structure(contentEl);
         buildToc();
+        trackActiveSection();
       } catch (err) {
         contentEl.innerHTML = '<p role="alert">Unable to load README content. <a href="https://github.com/andrizan">View it on GitHub</a> instead.</p>';
         console.error(err);
@@ -314,6 +327,60 @@
         li.appendChild(a);
         tocUl.appendChild(li);
       });
+    }
+
+    // Mark the TOC link of the section being read with aria-current
+    function trackActiveSection() {
+      const root = document.documentElement;
+      const headings = [...document.querySelectorAll('#content h2, #content h3')];
+      const tocList = document.getElementById('toc-list');
+      const links = new Map([...tocList.querySelectorAll('a')].map(a => [a.getAttribute('href').slice(1), a]));
+      let current = null, lockUntil = 0, queued = false;
+
+      function setCurrent(id) {
+        if (id === current) return;
+        current = id;
+        links.forEach((a, key) => {
+          if (key === id) a.setAttribute('aria-current', 'location');
+          else a.removeAttribute('aria-current');
+        });
+      }
+
+      function update() {
+        queued = false;
+        if (performance.now() < lockUntil) return;
+        const rem = parseFloat(getComputedStyle(root).fontSize);
+        const vh = window.innerHeight;
+        const top = (parseFloat(getComputedStyle(root).scrollPaddingTop) || 0) + 3 * rem;
+        // Headings near the page end can't reach the top line, so over the last
+        // half viewport of scrolling the line moves down to the viewport bottom
+        const max = root.scrollHeight - vh;
+        const ramp = max > 0 ? Math.min(1, Math.max(0, 1 - (max - window.scrollY) / (vh / 2))) : 0;
+        const line = top + ramp * (vh - top);
+        let active = null;
+        for (const h of headings) {
+          if (h.getBoundingClientRect().top > line) break;
+          active = h;
+        }
+        setCurrent(active && active.id);
+      }
+
+      function schedule() {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(update);
+      }
+
+      // A clicked link stays current while the page scrolls to its section
+      tocList.addEventListener('click', e => {
+        const a = e.target.closest('a');
+        if (!a) return;
+        setCurrent(a.getAttribute('href').slice(1));
+        lockUntil = performance.now() + 1200;
+      });
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', schedule);
+      schedule();
     }
 
     // Toggle for mobile
