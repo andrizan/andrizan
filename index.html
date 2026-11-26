@@ -292,7 +292,12 @@
         const res = await fetch('README.md');
         if (!res.ok) throw new Error('Failed to load README (' + res.status + ')');
         const mdText = await res.text();
-        contentEl.innerHTML = marked.parse(mdText);
+        // Parse into an inert template so the profile-views badge is dropped before it loads
+        const tpl = document.createElement('template');
+        tpl.innerHTML = marked.parse(mdText);
+        const badge = tpl.content.querySelector('img[src^="https://komarev.com/ghpvc/"]');
+        (badge?.closest('p') || badge)?.remove();
+        contentEl.replaceChildren(tpl.content);
         assignIds();
         structure(contentEl);
         buildToc();
