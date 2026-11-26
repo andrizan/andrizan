@@ -24,6 +24,7 @@ Email: <a href="mailto:me@andrizan.com">me@andrizan.com</a> | GitHub: [github.co
 ### Database & Storage
 - MySQL, PostgreSQL, MongoDB, MSSQL, ClickHouse
 - Redis / Valkey
+- Object storage self-hosted: MinIO (legacy), RustFS, Garage
 
 ### DevOps & Tools
 - Git, Docker, Podman
