@@ -1,67 +1,4 @@
-async function loadMarkdown() {
-  const contentEl = document.getElementById('content');
-  try {
-    // Each page names its own markdown and error message, so this script stays language-neutral
-    const res = await fetch(contentEl.dataset.src);
-    if (!res.ok) throw new Error('Failed to load README (' + res.status + ')');
-    const mdText = await res.text();
-    // Parse into an inert template so the profile-views badge is dropped before it loads
-    const tpl = document.createElement('template');
-    tpl.innerHTML = marked.parse(mdText);
-    const badge = tpl.content.querySelector('img[src^="https://komarev.com/ghpvc/"]');
-    (badge?.closest('p') || badge)?.remove();
-    contentEl.replaceChildren(tpl.content);
-    assignIds();
-    structure(contentEl);
-    buildToc();
-    trackActiveSection();
-  } catch (err) {
-    contentEl.replaceChildren(document.getElementById('load-error').content.cloneNode(true));
-    console.error(err);
-  } finally {
-    contentEl.removeAttribute('aria-busy');
-  }
-}
-
-function assignIds() {
-  document.querySelectorAll('#content h1, #content h2, #content h3').forEach(h => {
-    h.id = h.textContent.trim().toLowerCase().replace(/\s+/g, '-');
-  });
-}
-
-// Wrap rendered markdown: intro -> <header>, each h2 -> <section>
-function structure(root) {
-  const header = document.createElement('header');
-  const frag = document.createDocumentFragment();
-  frag.append(header);
-  let section = null;
-
-  for (const el of [...root.children]) {
-    if (el.tagName === 'H2') {
-      section = document.createElement('section');
-      section.setAttribute('aria-labelledby', el.id);
-      frag.append(section);
-    }
-    (section || header).append(el);
-  }
-  root.replaceChildren(frag);
-}
-
-function buildToc() {
-  const headings = document.querySelectorAll('#content h2, #content h3');
-  const tocUl = document.querySelector('#toc ul');
-  tocUl.innerHTML = "";
-
-  headings.forEach(h => {
-    const li = document.createElement('li');
-    li.dataset.level = h.tagName[1];
-    const a = document.createElement('a');
-    a.href = '#' + h.id;
-    a.textContent = h.textContent;
-    li.appendChild(a);
-    tocUl.appendChild(li);
-  });
-}
+// Content and TOC are pre-rendered by scripts/build.mjs; this script only enhances them.
 
 // Mark the TOC link of the section being read with aria-current
 function trackActiveSection() {
@@ -132,4 +69,4 @@ tocEl.querySelector('ul').addEventListener('click', e => {
   if (e.target.closest('a')) setTocCollapsed(true);
 });
 
-window.addEventListener('DOMContentLoaded', loadMarkdown);
+trackActiveSection();

@@ -45,8 +45,6 @@
     }
   </script>
 
-  <script defer src="https://cdn.jsdelivr.net/npm/marked@18.1.2/lib/marked.umd.min.js"></script>
-
   <!-- Ioskeley Mono (OFL-1.1): https://github.com/ahatem/IoskeleyMono -->
   <link rel="preload" href="https://cdn.jsdelivr.net/gh/ahatem/IoskeleyMono@v2.2.0/site/fonts/IoskeleyMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -60,15 +58,108 @@
       <span aria-hidden="true">☰</span> Daftar Isi
     </button>
     <p class="toc-title" aria-hidden="true">Daftar Isi</p>
-    <ul id="toc-list"></ul>
+    <ul id="toc-list">
+      <!-- build:toc -->
+<li data-level="2"><a href="#keahlian">KEAHLIAN</a></li>
+<li data-level="3"><a href="#bahasa-pemrograman">Bahasa Pemrograman</a></li>
+<li data-level="3"><a href="#framework-frontend">Framework Frontend</a></li>
+<li data-level="3"><a href="#framework-backend">Framework Backend</a></li>
+<li data-level="3"><a href="#mobile">Mobile</a></li>
+<li data-level="3"><a href="#database-storage">Database &amp; Storage</a></li>
+<li data-level="3"><a href="#devops-tools">DevOps &amp; Tools</a></li>
+<li data-level="3"><a href="#cloud-deployment">Cloud &amp; Deployment</a></li>
+<li data-level="2"><a href="#pengalaman-kerja">PENGALAMAN KERJA</a></li>
+<li data-level="3"><a href="#senior-engineer-pt-belanja-pasti-indonesia">Senior Engineer – PT Belanja Pasti Indonesia</a></li>
+<li data-level="3"><a href="#fullstack-developer-cv-ezatech">Fullstack Developer – CV Ezatech</a></li>
+      <!-- /build:toc -->
+    </ul>
   </nav>
 
   <main id="main" tabindex="-1">
     <p class="lang"><a href="/" hreflang="en" lang="en">English</a></p>
-    <div id="content" aria-busy="true" data-src="/id/README.md">
-      <noscript><p class="note">Halaman ini butuh JavaScript untuk menampilkan README saya. Silakan <a href="https://github.com/andrizan">lihat di GitHub</a>.</p></noscript>
+    <!-- Generated from id/README.md by `pnpm build`; edit the markdown, not this block -->
+    <div id="content">
+      <!-- build:content -->
+<header>
+<h1 id="riski-andriyanto">Riski Andriyanto</h1>
+<p>Programmer | Backend &amp; Fullstack Developer <br/>
+Email: <a href="mailto:me@andrizan.com">me@andrizan.com</a> | GitHub: <a href="https://github.com/andrizan">github.com/andrizan</a> | LinkedIn: <a href="https://linkedin.com/in/andrizan">linkedin.com/in/andrizan</a></p>
+<hr>
+</header>
+<section aria-labelledby="keahlian">
+<h2 id="keahlian">KEAHLIAN</h2>
+<h3 id="bahasa-pemrograman">Bahasa Pemrograman</h3>
+<ul>
+<li>PHP (Laravel), Go, SQL</li>
+<li>JavaScript / TypeScript (Node.js, Bun.js)</li>
+</ul>
+<h3 id="framework-frontend">Framework Frontend</h3>
+<ul>
+<li>React, Vue.js, Svelte, SolidJS</li>
+<li>HTML, CSS (Tailwind, Bootstrap)</li>
+</ul>
+<h3 id="framework-backend">Framework Backend</h3>
+<ul>
+<li>RESTful API, Hono.js, Laravel, Chi, SQLx, Express.js, WebSocket</li>
+<li>Message queue: RabbitMQ</li>
+</ul>
+<h3 id="mobile">Mobile</h3>
+<ul>
+<li>React Native, Flutter</li>
+</ul>
+<h3 id="database-storage">Database &amp; Storage</h3>
+<ul>
+<li>MySQL, PostgreSQL, MongoDB, MSSQL, ClickHouse</li>
+<li>Redis / Valkey</li>
+<li>Object storage self-hosted: MinIO (legacy), RustFS, Garage</li>
+</ul>
+<h3 id="devops-tools">DevOps &amp; Tools</h3>
+<ul>
+<li>Git, Docker, Podman</li>
+<li>Package manager: pnpm, Composer</li>
+<li>CI/CD (GitLab CI, GitHub Actions)</li>
+<li>Kubernetes, Rancher, Rancher Fleet</li>
+<li>Observability: Vector, OpenObserve</li>
+<li>Postman, Yaak</li>
+<li>IDE: VS Code, Zed</li>
+</ul>
+<h3 id="cloud-deployment">Cloud &amp; Deployment</h3>
+<ul>
+<li>VPS, Google Cloud, Digitalocean, Cloudflare</li>
+<li>Self-hosting: XCP-ng, Proxmox</li>
+<li>Nginx, systemd, Netplan, PM2</li>
+</ul>
+<hr>
+</section>
+<section aria-labelledby="pengalaman-kerja">
+<h2 id="pengalaman-kerja">PENGALAMAN KERJA</h2>
+<h3 id="senior-engineer-pt-belanja-pasti-indonesia">Senior Engineer – PT Belanja Pasti Indonesia</h3>
+<p><em>Juni 2019 – Sekarang</em></p>
+<p>Sebagian besar pekerjaan saya ada di ERP internal dan aplikasi perusahaan. Saya juga mengurus server tempat semuanya berjalan.</p>
+<ul>
+<li>Membangun dan memelihara ERP internal. Backend-nya memakai Laravel dan Go, sebagian service berjalan di Hono/Bun, dan frontend-nya memakai React dan Next.js.</li>
+<li>Mengembangkan aplikasi untuk tim internal maupun pelanggan, termasuk sistem chat berbasis REST API dan WebSocket.</li>
+<li>Mengerjakan aplikasi mobile dengan Flutter dan React Native. Saat ini semuanya sedang dimigrasi ke Flutter.</li>
+<li>Memakai RabbitMQ sebagai message queue antar service.</li>
+<li>Menelusuri masalah aplikasi dan melakukan R&amp;D kalau perbaikannya butuh pendekatan lain.</li>
+</ul>
+<p>Di sisi infrastruktur:</p>
+<ul>
+<li>Mengelola tiga server bare-metal dengan XCP-ng dan Proxmox: dua untuk VM (satu development, satu production) dan satu untuk cluster Kubernetes Rancher.</li>
+<li>Membangun cluster database production untuk MongoDB dan PostgreSQL.</li>
+<li>Menyiapkan dan memelihara deployment: aplikasi di cluster Kubernetes di-deploy lewat Rancher Fleet, sisanya lewat pipeline GitLab CI biasa.</li>
+<li>Mengumpulkan log dengan Vector lalu mengirimnya ke OpenObserve, sehingga log dari semua service bisa dicari di satu tempat.</li>
+</ul>
+<h3 id="fullstack-developer-cv-ezatech">Fullstack Developer – CV Ezatech</h3>
+<p><em>Juni 2018 – Juni 2019</em></p>
+<ul>
+<li>Membangun aplikasi web untuk perusahaan swasta dan instansi pemerintah, dengan Ezatech sebagai vendor.</li>
+<li>Mengerjakan backend sekaligus frontend. Stack-nya Laravel monolith dengan jQuery dan AJAX di frontend, plus Bootstrap untuk tampilan.</li>
+<li>Deploy dilakukan manual karena belum ada CI/CD.</li>
+</ul>
+</section>
+      <!-- /build:content -->
     </div>
-    <template id="load-error"><p role="alert" class="note">Konten README gagal dimuat. Silakan <a href="https://github.com/andrizan">lihat di GitHub</a>.</p></template>
   </main>
 
   <script defer src="/assets/site.js"></script>

@@ -46,8 +46,6 @@
     }
   </script>
 
-  <script defer src="https://cdn.jsdelivr.net/npm/marked@18.1.2/lib/marked.umd.min.js"></script>
-
   <!-- Ioskeley Mono (OFL-1.1): https://github.com/ahatem/IoskeleyMono -->
   <link rel="preload" href="https://cdn.jsdelivr.net/gh/ahatem/IoskeleyMono@v2.2.0/site/fonts/IoskeleyMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -61,15 +59,108 @@
       <span aria-hidden="true">☰</span> Table of Contents
     </button>
     <p class="toc-title" aria-hidden="true">Table of Contents</p>
-    <ul id="toc-list"></ul>
+    <ul id="toc-list">
+      <!-- build:toc -->
+<li data-level="2"><a href="#core-competencies">CORE COMPETENCIES</a></li>
+<li data-level="3"><a href="#languages">Languages</a></li>
+<li data-level="3"><a href="#frontend-frameworks">Frontend Frameworks</a></li>
+<li data-level="3"><a href="#backend-frameworks">Backend Frameworks</a></li>
+<li data-level="3"><a href="#mobile">Mobile</a></li>
+<li data-level="3"><a href="#databases-storage">Databases &amp; Storage</a></li>
+<li data-level="3"><a href="#devops-tools">DevOps &amp; Tools</a></li>
+<li data-level="3"><a href="#cloud-deployment">Cloud &amp; Deployment</a></li>
+<li data-level="2"><a href="#work-experience">WORK EXPERIENCE</a></li>
+<li data-level="3"><a href="#senior-engineer-pt-belanja-pasti-indonesia">Senior Engineer – PT Belanja Pasti Indonesia</a></li>
+<li data-level="3"><a href="#fullstack-developer-cv-ezatech">Fullstack Developer – CV Ezatech</a></li>
+      <!-- /build:toc -->
+    </ul>
   </nav>
 
   <main id="main" tabindex="-1">
     <p class="lang"><a href="/id/" hreflang="id" lang="id">Bahasa Indonesia</a></p>
-    <div id="content" aria-busy="true" data-src="/README.md">
-      <noscript><p class="note">This page renders my README with JavaScript. <a href="https://github.com/andrizan">View it on GitHub</a> instead.</p></noscript>
+    <!-- Generated from README.md by `pnpm build`; edit the markdown, not this block -->
+    <div id="content">
+      <!-- build:content -->
+<header>
+<h1 id="riski-andriyanto">Riski Andriyanto</h1>
+<p>Programmer | Backend &amp; Fullstack Developer <br/>
+Email: <a href="mailto:me@andrizan.com">me@andrizan.com</a> | GitHub: <a href="https://github.com/andrizan">github.com/andrizan</a> | LinkedIn: <a href="https://linkedin.com/in/andrizan">linkedin.com/in/andrizan</a></p>
+<hr>
+</header>
+<section aria-labelledby="core-competencies">
+<h2 id="core-competencies">CORE COMPETENCIES</h2>
+<h3 id="languages">Languages</h3>
+<ul>
+<li>PHP (Laravel), Go, SQL</li>
+<li>JavaScript / TypeScript (Node.js, Bun.js)</li>
+</ul>
+<h3 id="frontend-frameworks">Frontend Frameworks</h3>
+<ul>
+<li>React, Vue.js, Svelte, SolidJS</li>
+<li>HTML, CSS (Tailwind, Bootstrap)</li>
+</ul>
+<h3 id="backend-frameworks">Backend Frameworks</h3>
+<ul>
+<li>RESTful API, Hono.js, Laravel, Chi, SQLx, Express.js, WebSocket</li>
+<li>Message queue: RabbitMQ</li>
+</ul>
+<h3 id="mobile">Mobile</h3>
+<ul>
+<li>React Native, Flutter</li>
+</ul>
+<h3 id="databases-storage">Databases &amp; Storage</h3>
+<ul>
+<li>MySQL, PostgreSQL, MongoDB, MSSQL, ClickHouse</li>
+<li>Redis / Valkey</li>
+<li>Self-hosted object storage: MinIO (legacy), RustFS, Garage</li>
+</ul>
+<h3 id="devops-tools">DevOps &amp; Tools</h3>
+<ul>
+<li>Git, Docker, Podman</li>
+<li>Package managers: pnpm, Composer</li>
+<li>CI/CD (GitLab CI, GitHub Actions)</li>
+<li>Kubernetes, Rancher, Rancher Fleet</li>
+<li>Observability: Vector, OpenObserve</li>
+<li>Postman, Yaak</li>
+<li>IDE: VS Code, Zed</li>
+</ul>
+<h3 id="cloud-deployment">Cloud &amp; Deployment</h3>
+<ul>
+<li>VPS, Google Cloud, Digitalocean, Cloudflare</li>
+<li>Self-hosting: XCP-ng, Proxmox</li>
+<li>Nginx, systemd, Netplan, PM2</li>
+</ul>
+<hr>
+</section>
+<section aria-labelledby="work-experience">
+<h2 id="work-experience">WORK EXPERIENCE</h2>
+<h3 id="senior-engineer-pt-belanja-pasti-indonesia">Senior Engineer – PT Belanja Pasti Indonesia</h3>
+<p><em>June 2019 – Present</em></p>
+<p>Most of my time goes into the internal ERP and the company&#39;s apps. I also look after the servers they run on.</p>
+<ul>
+<li>Build and maintain the internal ERP. The backend runs on Laravel and Go, with some services on Hono/Bun, and the frontends use React and Next.js.</li>
+<li>Develop apps for both internal teams and customers, including a chat system built on a REST API and WebSocket.</li>
+<li>Work on the mobile apps in Flutter and React Native. We&#39;re now moving all of them to Flutter.</li>
+<li>Use RabbitMQ to queue work between services.</li>
+<li>Track down application issues and do R&amp;D when a fix needs a different approach.</li>
+</ul>
+<p>On the infrastructure side:</p>
+<ul>
+<li>Manage three bare-metal servers on XCP-ng and Proxmox: two host VMs (one for development, one for production), and one runs the Rancher Kubernetes cluster.</li>
+<li>Built the production database clusters for MongoDB and PostgreSQL.</li>
+<li>Set up and maintain deployments: apps on the Kubernetes cluster go out through Rancher Fleet, and everything else through plain GitLab CI pipelines.</li>
+<li>Collect logs with Vector and send them to OpenObserve, so logs from every service can be searched in one place.</li>
+</ul>
+<h3 id="fullstack-developer-cv-ezatech">Fullstack Developer – CV Ezatech</h3>
+<p><em>June 2018 – June 2019</em></p>
+<ul>
+<li>Built web applications for private companies and government agencies, with Ezatech as the vendor.</li>
+<li>Handled both the backend and the frontend. The stack was a Laravel monolith with jQuery and AJAX on the frontend, styled with Bootstrap.</li>
+<li>Deployed releases by hand, since there was no CI/CD in place.</li>
+</ul>
+</section>
+      <!-- /build:content -->
     </div>
-    <template id="load-error"><p role="alert" class="note">Unable to load README content. <a href="https://github.com/andrizan">View it on GitHub</a> instead.</p></template>
   </main>
 
   <script defer src="/assets/site.js"></script>

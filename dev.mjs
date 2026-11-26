@@ -1,10 +1,12 @@
-// Minimal dev server: serves this folder and reloads the browser when a file changes.
-// Usage: node dev.mjs [port]   (default 8080)
+// Minimal dev server: serves this folder, re-renders the pages when a README changes, and reloads
+// the browser when a file changes.
+// Usage: pnpm install, then pnpm dev (or node dev.mjs [port], default 8080)
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { watch } from 'node:fs';
 import { extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { build } from './scripts/build.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const port = Number(process.argv[2]) || 8080;
@@ -49,13 +51,32 @@ createServer(async (req, res) => {
     res.writeHead(200, { 'Content-Type': type, 'Cache-Control': 'no-store' });
     res.end(body);
   } catch {
-    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('Not found');
+    // Like Cloudflare Pages: missing paths get 404.html with a 404 status
+    const notFound = await readFile(join(root, '404.html')).catch(() => null);
+    res.writeHead(404, { 'Content-Type': notFound ? types['.html'] : 'text/plain; charset=utf-8' });
+    res.end(notFound ?? 'Not found');
   }
 }).listen(port, '127.0.0.1', () => console.log(`Preview: http://127.0.0.1:${port}`));
 
+console.log((await build()).length ? 'Pages re-rendered from the READMEs' : 'Pages up to date');
+
+// A changed README is rebuilt into its page; the page write then triggers the reload
 let timer;
+const changed = new Set();
 watch(root, { recursive: true }, (_event, name) => {
-  if (!name || name.startsWith('.git')) return;
+  if (!name || name.startsWith('.git') || name.startsWith('node_modules')) return;
+  changed.add(name);
   clearTimeout(timer);
-  timer = setTimeout(() => clients.forEach(client => client.write('data: reload\n\n')), 100);
+  timer = setTimeout(async () => {
+    const names = [...changed];
+    changed.clear();
+    if (names.some(n => n.endsWith('.md'))) {
+      try {
+        await build();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    if (names.some(n => !n.endsWith('.md'))) clients.forEach(client => client.write('data: reload\n\n'));
+  }, 100);
 });

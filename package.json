@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "packageManager": "pnpm@12.23.0",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node dev.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
+  },
+  "devDependencies": {
+    "marked": "18.1.2"
+  }
+}

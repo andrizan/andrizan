@@ -94,11 +94,8 @@ a { color: var(--accent); }
 
 .skip-link:focus { transform: none; }
 
-.note {
-  padding: calc(var(--pad) / 1.5) var(--pad);
-  border: 1px solid var(--fg);
-  background: var(--bg-hint);
-}
+/* Pages without a TOC, e.g. 404.html */
+body.single { display: block; }
 
 /* TOC */
 .toc {
