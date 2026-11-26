@@ -66,5 +66,6 @@ On the infrastructure side:
 
 ### Fullstack Developer – CV Ezatech
 *June 2018 – June 2019*
-- Worked on client projects, handling both the backend and the frontend.
-- The stack was a Laravel monolith with jQuery and AJAX on the frontend, styled with Bootstrap.
+- Built web applications for private companies and government agencies, with Ezatech as the vendor.
+- Handled both the backend and the frontend. The stack was a Laravel monolith with jQuery and AJAX on the frontend, styled with Bootstrap.
+- Deployed releases by hand, since there was no CI/CD in place.
