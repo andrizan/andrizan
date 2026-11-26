@@ -59,7 +59,7 @@ Most of my time goes into the internal ERP and the company's apps. I also look a
 
 On the infrastructure side:
 
-- Manage the company servers: two XCP-ng hosts running a Rancher Kubernetes cluster, plus one Proxmox host.
+- Manage three bare-metal servers on XCP-ng and Proxmox: two host VMs (one for development, one for production), and one runs the Rancher Kubernetes cluster.
 - Set up and maintain the GitLab CI pipelines that build and deploy the apps.
 - Deploy to Kubernetes with Rancher Fleet, so what runs in the cluster follows what's in Git.
 - Collect logs with Vector and send them to OpenObserve, so logs from every service can be searched in one place.
