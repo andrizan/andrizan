@@ -20,6 +20,7 @@ Email: <a href="mailto:me@andrizan.com">me@andrizan.com</a> | GitHub: [github.co
 
 ### Backend Frameworks
 - RESTful API, Hono.js, Laravel, Chi, SQLx, Express.js, WebSocket
+- Message queue: RabbitMQ
 
 ### Mobile
 - React Native, Flutter
@@ -30,11 +31,16 @@ Email: <a href="mailto:me@andrizan.com">me@andrizan.com</a> | GitHub: [github.co
 
 ### DevOps & Tools
 - Git, Docker, Podman
-- Postman, Yaak, CI/CD (GitLab CI), Kubernetes
+- CI/CD (GitLab CI, GitHub Actions)
+- Kubernetes, Rancher, Rancher Fleet
+- Observability: Vector, OpenObserve
+- Postman, Yaak
+- IDE: VS Code, Zed
 
 ### Cloud & Deployment
-- VPS, Google Cloud, Digitalocean, xcp-ng, Proxmox, Cloudflare
-- Nginx, systemd, PM2
+- VPS, Google Cloud, Digitalocean, Cloudflare
+- Self-hosting: XCP-ng, Proxmox
+- Nginx, systemd, Netplan, PM2
 
 ---
 
@@ -42,12 +48,23 @@ Email: <a href="mailto:me@andrizan.com">me@andrizan.com</a> | GitHub: [github.co
 
 ### Senior Engineer – PT Belanja Pasti Indonesia
 *June 2019 – Present*
-- Developed and maintained internal ERP systems.
-- Implemented CI/CD pipelines for automated deployments.
-- Conducted R&D to resolve application issues.
-- Designed applications for both internal operations and consumer use.
-- Maintained company servers.
+
+Most of my time goes into the internal ERP and the company's apps. I also look after the servers they run on.
+
+- Build and maintain the internal ERP. The backend runs on Laravel and Go, with some services on Hono/Bun, and the frontends use React and Next.js.
+- Develop apps for both internal teams and customers, including a chat system built on a REST API and WebSocket.
+- Work on the mobile apps in Flutter and React Native. We're now moving all of them to Flutter.
+- Use RabbitMQ to queue work between services.
+- Track down application issues and do R&D when a fix needs a different approach.
+
+On the infrastructure side:
+
+- Manage the company servers: two XCP-ng hosts running a Rancher Kubernetes cluster, plus one Proxmox host.
+- Set up and maintain the GitLab CI pipelines that build and deploy the apps.
+- Deploy to Kubernetes with Rancher Fleet, so what runs in the cluster follows what's in Git.
+- Collect logs with Vector and send them to OpenObserve, so logs from every service can be searched in one place.
 
 ### Fullstack Developer – CV Ezatech
 *June 2018 – June 2019*
-- Handled projects entrusted by clients to the company.
+- Worked on client projects, handling both the backend and the frontend.
+- The stack was a Laravel monolith with jQuery and AJAX on the frontend, styled with Bootstrap.
