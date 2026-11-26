@@ -32,6 +32,7 @@ Email: <a href="mailto:me@andrizan.com">me@andrizan.com</a> | GitHub: [github.co
 
 ### DevOps & Tools
 - Git, Docker, Podman
+- Package managers: pnpm, Composer
 - CI/CD (GitLab CI, GitHub Actions)
 - Kubernetes, Rancher, Rancher Fleet
 - Observability: Vector, OpenObserve
