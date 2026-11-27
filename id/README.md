@@ -65,5 +65,5 @@ Di sisi infrastruktur:
 ### Fullstack Developer – CV Ezatech
 *Juni 2018 – Juni 2019*
 - Membangun aplikasi web untuk perusahaan swasta dan instansi pemerintah, dengan Ezatech sebagai vendor.
-- Mengerjakan backend sekaligus frontend. Stack-nya Laravel monolith dengan jQuery dan AJAX di frontend, plus Bootstrap untuk tampilan.
+- Mengerjakan backend sekaligus frontend. Proyeknya berupa monolith PHP, ditulis dengan PHP native, CodeIgniter, atau Laravel, dengan jQuery dan AJAX di frontend plus Bootstrap untuk tampilan.
 - Deploy dilakukan manual karena belum ada CI/CD.
